@@ -1,0 +1,95 @@
+.main-content {
+  margin: auto;
+  text-align: center;
+}
+
+#switch {
+  margin: auto;
+  width: 8rem;
+  background-color: #808080;
+  height: 20rem;
+  color: red;
+  cursor: pointer;
+  border: .5rem solid #010405;
+  position: relative;
+  border-radius: 1rem;
+  appearance: none;
+  transition: .3s ease-in-out;
+}
+
+input#switch:checked {
+  /* background-color: #ffc400; */
+  background: transparent;
+}
+
+input#switch:hover {
+  /* border: 1rem solid #3d4951; */
+}
+
+input#switch::before {
+  width: 85%;
+  content: "Click";
+  /* margin: auto; */
+  text-align: center;
+  font-size: 2rem;
+  line-height: 8rem;
+  font-weight: bold;
+  /* align-items: self-end; */
+  height: 43%;
+  color: #9c9c9c;
+  background-color: #15191d;
+  position: absolute;
+  left: 7%;
+  top: 55%;
+  /* border: 1rem solid #30a5bd; */
+  border-radius: 1rem;
+  transition: .2s ease-in-out;
+}
+
+input#switch:checked::before {
+  top: 4%;
+}
+
+.site-main {
+  display: flex;
+}
+
+.site-main .inner {
+  align-self: center;
+}
+
+.lava .site-header{
+  opacity: 0;
+}
+
+.lava .site-main{
+  margin: 0;
+}
+
+.lava footer.site-footer {
+  display: none;
+}
+
+.lava #site-main {
+  background: linear-gradient(0deg, #ff0000, #ff6604,#f3fb1d,#40ffe6,#f7e941,#84eb3c, #1fe600, #ff743a, #ff0000);
+  background-size: 800% 800%;
+  -webkit-animation: AnimationName 40s ease infinite;
+  -moz-animation: AnimationName 40s ease infinite;
+  animation: AnimationName 5s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+  0%{background-position:0% 14%}
+  50%{background-position:100% 87%}
+  100%{background-position:0% 14%}
+}
+@-moz-keyframes AnimationName {
+  0%{background-position:0% 14%}
+  50%{background-position:100% 87%}
+  100%{background-position:0% 14%}
+}
+@keyframes AnimationName {
+  0%{background-position:0% 14%}
+  50%{background-position:100% 87%}
+  100%{background-position:0% 14%}
+}
