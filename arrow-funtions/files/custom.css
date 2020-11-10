@@ -1,0 +1,41 @@
+.options {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.option-wrapper {
+  flex-basis: 50%;
+  padding: 10px;
+}
+
+.option {
+  display: block;
+  padding: 10px;
+  border: 1px solid #282822;
+  border-radius: 5px;
+  /* margin: 10px; */
+  cursor: pointer;
+}
+
+li {
+  margin-bottom: 50px;
+}
+/* 
+.result-wrapper {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-evenly;
+} */
+
+#submit {
+  color: black;
+  padding: 5px;
+  border-radius: 5px;
+  width: 100px;
+}
+
+@media(max-width:600px) {
+  .option-wrapper {
+      flex-basis: 100%;
+  }
+}
