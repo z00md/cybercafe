@@ -1,0 +1,103 @@
+<!-- With content dispositino -->
+
+<html>
+  <head>Download file</head>
+  <body>
+    Simple link - <a href="https://images.unsplash.com/photo-1594535483297-b23201bee10f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=z00md-BHrA5cSuDq4-unsplash.jpg">Download!</a>
+
+    <hr/>
+    Form - cannot pass query string
+    <form method="get" action="https://images.unsplash.com/photo-1594535483297-b23201bee10f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=z00md-BHrA5cSuDq4-unsplash.jpg">
+      <button type="submit">Download!</button>
+   </form>
+
+   <hr/>
+   Button with onclick - popup maybe blocked
+   <button type="submit" onclick="window.open('https://images.unsplash.com/photo-1594535483297-b23201bee10f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=z00md-BHrA5cSuDq4-unsplash.jpg')">Download!</button>
+
+   <hr/>
+   Button with onclick - same window - works too
+   <button type="submit" onclick="window.location ='https://images.unsplash.com/photo-1594535483297-b23201bee10f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=z00md-BHrA5cSuDq4-unsplash.jpg'">Download!</button>
+
+   <hr/>
+   Using javascript to simulate click - Add a link dynamically and click on it in the background
+   <button onclick="downloadFile()">Download</button>
+   <script>
+     function downloadFile() {
+      let url = "https://images.unsplash.com/photo-1594535483297-b23201bee10f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=z00md-BHrA5cSuDq4-unsplash.jpg";
+      let a = document.createElement('a')
+      a.href = url
+      a.download = url.split('/').pop()
+      document.body.appendChild(a)
+      a.click()
+      document.body.removeChild(a)
+     }
+  </script>
+
+  <br/>
+  Using iframe
+  <button onclick="downloadFileUsingIframe()">Download</button>
+  <iframe id="invisible" style="display:none;"></iframe>
+  <Script>
+    function downloadFileUsingIframe() {
+    var iframe = document.getElementById('invisible');
+    iframe.src = "https://images.unsplash.com/photo-1594535483297-b23201bee10f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=z00md-BHrA5cSuDq4-unsplash.jpg";
+  }
+  </Script>
+
+  <hr/>
+  <br/>
+  <a download="file" href="https://images.unsplash.com/photo-1594535483297-b23201bee10f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=z00md-BHrA5cSuDq4-unsplash.jpg">With download attribute</a>
+
+  <hr/>
+  Mozilla file - <a href="https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf">Download from mozilla</a>
+  
+  <hr/>
+  Using ObjectUrl - downloads whatever the server returns
+  <button onclick="downloadFileWithObjectUrl()">Using object URL</button>
+  <script>
+    function downloadFileWithObjectUrl() {
+      fetch('https://images.unsplash.com/photo-1594535483297-b23201bee10f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=z00md-BHrA5cSuDq4-unsplash.jpg')
+        .then(resp => resp.blob())
+        .then(blob => {
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.style.display = 'none';
+          a.href = url;
+          // the filename you want
+          a.download = 'custom-name';
+          document.body.appendChild(a);
+          a.click();
+          window.URL.revokeObjectURL(url);
+          alert('File download done');
+        })
+        .catch(() => alert('Error while downloading'));
+    }
+  </script>
+
+  <hr>
+  Using data scheme
+  <button onclick="initiateDownloadByData()">Download by data</button>
+  <script>
+    function downloadByData(filename, text) {
+      var element = document.createElement('a');
+      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+      element.setAttribute('download', filename);
+
+      element.style.display = 'none';
+      document.body.appendChild(element);
+
+      element.click();
+
+      document.body.removeChild(element);
+    }
+
+    function initiateDownloadByData() {
+      downloadByData("hello.txt","This is the content of my file :)");
+    }
+
+    // Start file download.
+    // initiateDownloadByData("hello.txt","This is the content of my file :)");
+  </script>
+
+</html>
